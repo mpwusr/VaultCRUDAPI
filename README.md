@@ -1,7 +1,7 @@
 # Vault KV Secrets API Clients (Java)
 
-This project provides simple, reusable clients in **Python** and **Java** for managing secrets using the **HashiCorp Vault KV-v2 secrets engine**. It supports basic CRUDL operations:
-
+This project provides simple, reusable client in **Java** for managing secrets using the **HashiCorp Vault KV-v2 secrets engine**. 
+It supports basic CRUDL operations:
 - Create or update secrets
 - Read secrets
 - List secrets under a prefix
@@ -26,9 +26,11 @@ This project provides simple, reusable clients in **Python** and **Java** for ma
 https://developer.hashicorp.com/vault/install
 
 # Start Vault in dev mode:
+```
 vault server -dev
-You will see a Root Token: s.XXXX in the console. Copy it.
-
+You will see a Root Token: s.XXXX in the console. 
+Copy it.
+```
 ## 2. Set Environment Variables
 ```
 export VAULT_ADDR=http://127.0.0.1:8200
@@ -48,13 +50,14 @@ java -cp .:okhttp-4.12.0.jar VaultKVClient
 ```
 
 # API Mapping (Vault KV v2)
+```
 Operation	HTTP Method	API Endpoint
 Create/Update	POST	/v1/secret/data/<path>
 Read	GET	/v1/secret/data/<path>
 List	LIST | GET	/v1/secret/metadata/<prefix>?list=true
 Soft Delete	DELETE	/v1/secret/metadata/<path>
 Hard Delete	DELETE	/v1/secret/data/<path>
-
+```
 # Sample Output
 ```
 Write: 200 OK
@@ -63,12 +66,13 @@ LIST → ['demo']
 Delete: 204 No Content
 ```
 # Tips
+```
 Vault dev mode does not persist secrets between restarts.
 If using a production Vault:
 Set up proper auth (AppRole, GitHub, etc.)
 Mount the KV engine with: vault secrets enable -path=secret kv-v2
 Adjust the base path if not using /secret
-
+```
 # Project Structure
 ```
 vault-kv-api/
@@ -78,6 +82,7 @@ vault-kv-api/
 ```
 
 📄 License
+```
 MIT License – use freely with credit.
 HashiCorp Vault is © HashiCorp under BUSL-1.1 / MPL.
-
+```
