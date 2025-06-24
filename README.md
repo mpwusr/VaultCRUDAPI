@@ -9,7 +9,7 @@ This project provides simple, reusable clients in **Python** and **Java** for ma
 
 ---
 
-## 🚀 Prerequisites
+## Prerequisites
 
 - Vault installed and running (local or remote)
 - Vault token (e.g., dev root token)
