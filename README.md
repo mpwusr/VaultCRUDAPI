@@ -22,7 +22,7 @@ It supports basic CRUDL operations:
 
 ### 1. Install and Run Vault
 
-# Download and unzip Vault manually if Homebrew is blocked:
+#### Download and unzip Vault manually if Homebrew is blocked:
 https://developer.hashicorp.com/vault/install
 
 # Start Vault in dev mode:
