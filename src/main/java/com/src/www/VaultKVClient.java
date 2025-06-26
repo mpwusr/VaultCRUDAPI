@@ -1,7 +1,8 @@
 // VaultKVClient.java
+package com.src.www;
+
 import okhttp3.*;
 import java.io.IOException;
-import java.util.Map;
 
 public class VaultKVClient {
 
@@ -19,10 +20,13 @@ public class VaultKVClient {
     private String url(String endpoint) { return addr + "/v1/" + endpoint; }
 
     private Request.Builder reqBuilder(String endpoint) {
-        return new Request.Builder()
+        Request.Builder builder = new Request.Builder()
                 .url(url(endpoint))
                 .addHeader("X-Vault-Token", token);
+
+        return builder;
     }
+
 
     private Response call(Request req) throws IOException {
         Response res = http.newCall(req).execute();
@@ -73,6 +77,7 @@ public class VaultKVClient {
     public static void main(String[] args) throws Exception {
         String addr  = System.getenv().getOrDefault("VAULT_ADDR", "http://127.0.0.1:8200");
         String token = System.getenv("VAULT_TOKEN");
+        // ← add
         VaultKVClient client = new VaultKVClient(addr, token);
 
         client.createOrUpdate("demo", "{ \"username\": \"bob\", \"pwd\": \"p4ss\" }");
