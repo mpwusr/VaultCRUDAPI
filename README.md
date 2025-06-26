@@ -37,14 +37,8 @@ export VAULT_ADDR=http://127.0.0.1:8200
 export VAULT_TOKEN=s.XXXXXXX  # Use the actual root token
 ```
 ## 3. Java Client Usage
-# Dependencies (Gradle)
-```
-dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
-}
-```
 # Build & Run
-# perform clean of jar
+# Perform clean of java jar files
 ```
 michaelwilliams@Michaels-MBP VaultCRUDAPI % gradle clean                           
 
@@ -59,7 +53,7 @@ For more on this, please refer to https://docs.gradle.org/8.14.2/userguide/comma
 BUILD SUCCESSFUL in 318ms
 1 actionable task: 1 executed
 ```
-# perform build of jars
+# Perform build of java jar files
 ```
 michaelwilliams@Michaels-MBP VaultCRUDAPI % gradle build
 
@@ -74,12 +68,12 @@ For more on this, please refer to https://docs.gradle.org/8.14.2/userguide/comma
 BUILD SUCCESSFUL in 757ms
 9 actionable tasks: 9 executed
 ```
-# list jar files
+# List jar files
 ```
 michaelwilliams@Michaels-MBP VaultCRUDAPI % ls build/libs 
 VaultCRUDAPI-all.jar    VaultCRUDAPI.jar
 ```
-# run client and API calls in fat jar
+# Run client and API calls in all jar
 ```
 michaelwilliams@Michaels-MBP VaultCRUDAPI % java -jar build/libs/VaultCRUDAPI-all.jar
 Vault client starting...
@@ -89,7 +83,7 @@ LIST  → {"request_id":"ab86e998-a2ca-c822-375b-5286f9bce9cd","lease_id":"","re
 
 Secret deleted.
 ```
-License
+# License
 ```
 MIT License – use freely with credit.
 HashiCorp Vault is © HashiCorp under BUSL-1.1 / MPL.
