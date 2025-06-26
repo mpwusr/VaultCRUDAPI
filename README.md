@@ -44,44 +44,52 @@ dependencies {
 }
 ```
 # Build & Run
+# perform clean of jar
 ```
-javac -cp .:okhttp-4.12.0.jar VaultKVClient.java
-java -cp .:okhttp-4.12.0.jar VaultKVClient
-```
+michaelwilliams@Michaels-MBP VaultCRUDAPI % gradle clean                           
 
-# API Mapping (Vault KV v2)
-```
-Operation	HTTP Method	API Endpoint
-Create/Update	POST	/v1/secret/data/<path>
-Read	GET	/v1/secret/data/<path>
-List	LIST | GET	/v1/secret/metadata/<prefix>?list=true
-Soft Delete	DELETE	/v1/secret/metadata/<path>
-Hard Delete	DELETE	/v1/secret/data/<path>
-```
-# Sample Output
-```
-Write: 200 OK
-READ → {'username': 'alice', 'pwd': 's3cr3t'}
-LIST → ['demo']
-Delete: 204 No Content
-```
-# Tips
-```
-Vault dev mode does not persist secrets between restarts.
-If using a production Vault:
-Set up proper auth (AppRole, GitHub, etc.)
-Mount the KV engine with: vault secrets enable -path=secret kv-v2
-Adjust the base path if not using /secret
-```
-# Project Structure
-```
-vault-kv-api/
-├── vault_kv_client.py      # Python API client
-├── VaultKVClient.java      # Java API client
-├── README.md               # This file
-```
+[Incubating] Problems report is available at: file:///Users/michaelwilliams/working/VaultCRUDAPI/VaultCRUDAPI/build/reports/problems/problems-report.html
 
-📄 License
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 318ms
+1 actionable task: 1 executed
+```
+# perform build of jars
+```
+michaelwilliams@Michaels-MBP VaultCRUDAPI % gradle build
+
+[Incubating] Problems report is available at: file:///Users/michaelwilliams/working/VaultCRUDAPI/VaultCRUDAPI/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.2/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 757ms
+9 actionable tasks: 9 executed
+```
+# list jar files
+```
+michaelwilliams@Michaels-MBP VaultCRUDAPI % ls build/libs 
+VaultCRUDAPI-all.jar    VaultCRUDAPI.jar
+```
+# run client and API calls in fat jar
+```
+michaelwilliams@Michaels-MBP VaultCRUDAPI % java -jar build/libs/VaultCRUDAPI-all.jar
+Vault client starting...
+READ  → {"request_id":"ea43b0c8-8a41-6feb-15cb-7d19b7f103cb","lease_id":"","renewable":false,"lease_duration":0,"data":{"data":{"hello":"vault"},"metadata":{"created_time":"2025-06-26T19:42:02.398926Z","custom_metadata":null,"deletion_time":"","destroyed":false,"version":1}},"wrap_info":null,"warnings":null,"auth":null,"mount_type":"kv"}
+
+LIST  → {"request_id":"ab86e998-a2ca-c822-375b-5286f9bce9cd","lease_id":"","renewable":false,"lease_duration":0,"data":{"keys":["demo"]},"wrap_info":null,"warnings":null,"auth":null,"mount_type":"kv"}
+
+Secret deleted.
+```
+License
 ```
 MIT License – use freely with credit.
 HashiCorp Vault is © HashiCorp under BUSL-1.1 / MPL.
