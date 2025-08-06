@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'   // ← add this line
+}
+
+application {
+    mainClass = 'com.src.www.Main'
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    implementation platform('com.squareup.okhttp3:okhttp-bom:4.12.0')
+    implementation 'com.squareup.okhttp3:okhttp'
+    implementation 'com.google.code.gson:gson:2.11.0'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
